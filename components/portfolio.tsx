@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -83,7 +83,15 @@ function Services() {
 }
 
 function Contact() {
-  return <section id="contact" className="contact"><div className="contact-glow" /><SectionLabel number="06">Have a project in mind?</SectionLabel><div className="contact-layout"><div><h2>Let&apos;s make<br /><em>something</em><br />meaningful.</h2><p>Tell me a little about what you&apos;re working on. I&apos;ll get back to you within a couple of days.</p><div className="socials"><a href="https://github.com" aria-label="GitHub"><GitBranch size={18} /></a><a href="https://linkedin.com" aria-label="LinkedIn"><CircleUserRound size={18} /></a><a href="mailto:hello@muhammadhussain.dev" aria-label="Email"><Mail size={18} /></a></div></div><form className="contact-form" onSubmit={(e) => e.preventDefault()}><label>Name<input required placeholder="Your name" /></label><label>Email<input required type="email" placeholder="you@company.com" /></label><label>Subject<input placeholder="What can I help with?" /></label><label>Message<textarea required rows={4} placeholder="Tell me about your project..." /></label><button className="button button-primary" type="submit">Send message <MoveUpRight size={17} /></button></form></div></section>
+  const [submitted, setSubmitted] = useState(false)
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setSubmitted(true)
+    event.currentTarget.reset()
+  }
+
+  return <section id="contact" className="contact"><div className="contact-glow" /><SectionLabel number="06">Have a project in mind?</SectionLabel><div className="contact-layout"><div><h2>Let&apos;s make<br /><em>something</em><br />meaningful.</h2><p>Tell me a little about what you&apos;re working on. I&apos;ll get back to you within a couple of days.</p><div className="socials"><a href="https://github.com" aria-label="GitHub"><GitBranch size={18} /></a><a href="https://linkedin.com" aria-label="LinkedIn"><CircleUserRound size={18} /></a><a href="mailto:hello@muhammadhussain.dev" aria-label="Email"><Mail size={18} /></a></div></div><form className="contact-form" onSubmit={handleSubmit} aria-describedby={submitted ? 'contact-success' : undefined}><label htmlFor="name">Name<input id="name" name="name" required placeholder="Your name" /></label><label htmlFor="email">Email<input id="email" name="email" required type="email" placeholder="you@company.com" /></label><label htmlFor="subject">Subject<input id="subject" name="subject" placeholder="What can I help with?" /></label><label htmlFor="message">Message<textarea id="message" name="message" required rows={4} placeholder="Tell me about your project..." /></label><button className="button button-primary" type="submit">Send message <MoveUpRight size={17} /></button>{submitted && <p id="contact-success" className="form-success" role="status">Thanks — the form is validated. Please email me directly to send your brief.</p>}</form></div></section>
 }
 
 function Footer() {
