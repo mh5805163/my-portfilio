@@ -24,11 +24,11 @@ import {
 } from 'lucide-react'
 
 const skills = [
-  { name: 'React.js', level: 'Advanced', icon: Braces, color: 'lime' },
-  { name: '.NET', level: 'Advanced', icon: ServerCog, color: 'blue' },
-  { name: 'HTML5', level: 'Advanced', icon: Code2, color: 'orange' },
-  { name: 'CSS3', level: 'Advanced', icon: Palette, color: 'pink' },
-  { name: 'WordPress', level: 'Proficient', icon: Globe2, color: 'cyan' },
+  { name: 'React.js', level: 'Advanced', focus: 'Interfaces', icon: Braces, color: 'lime' },
+  { name: '.NET', level: 'Advanced', focus: 'Systems', icon: ServerCog, color: 'blue' },
+  { name: 'TypeScript', level: 'Advanced', focus: 'Precision', icon: Code2, color: 'orange' },
+  { name: 'CSS3', level: 'Advanced', focus: 'Expression', icon: Palette, color: 'pink' },
+  { name: 'WordPress', level: 'Proficient', focus: 'Content', icon: Globe2, color: 'cyan' },
 ]
 
 const projects = [
@@ -66,7 +66,7 @@ function About() {
 }
 
 function Skills() {
-  return <section id="skills" className="section skills"><SectionLabel number="02">What I bring</SectionLabel><div className="section-heading"><h2>Tools of<br /><span>the trade.</span></h2><p>A focused toolkit for building digital experiences that are as reliable under the hood as they are enjoyable to use.</p></div><div className="skills-grid">{skills.map(({ name, level, icon: Icon, color }, i) => <div className={`skill-card ${color}`} key={name}><div className="skill-top"><span className="skill-index">0{i + 1}</span><Icon size={23} strokeWidth={1.5} /></div><h3>{name}</h3><div className="skill-bottom"><span>{level}</span><span className="skill-arrow">↗</span></div></div>)}</div></section>
+  return <section id="skills" className="section skills"><SectionLabel number="02">What I bring</SectionLabel><div className="section-heading"><h2>Tools of<br /><span>the trade.</span></h2><p>A focused toolkit for building digital experiences that are as reliable under the hood as they are enjoyable to use.</p></div><div className="skills-grid">{skills.map(({ name, level, focus, icon: Icon, color }, i) => <article className={`skill-card ${color}`} key={name}><div className="skill-top"><span className="skill-index">0{i + 1}</span><Icon size={23} strokeWidth={1.5} aria-hidden="true" /></div><div className="skill-copy"><p>{focus}</p><h3>{name}</h3></div><div className="skill-bottom"><span>{level}</span><span className="skill-arrow" aria-hidden="true">↗</span></div></article>)}</div></section>
 }
 
 function Projects() {
