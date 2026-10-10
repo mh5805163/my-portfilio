@@ -54,7 +54,7 @@ function Brand() {
 function Navbar() {
   const [open, setOpen] = useState(false)
   const links = ['About', 'Skills', 'Projects', 'Experience', 'Services', 'Contact']
-  return <header className="site-header"><div className="nav-shell"><Brand /><nav className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Primary navigation">{links.map((link, i) => <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setOpen(false)}><span>0{i + 1}</span>{link}</a>)}</nav><a href="#contact" className="nav-cta">Let&apos;s talk <ArrowUpRight size={15} /></a><button className="menu-toggle" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button></div></header>
+  return <header className="site-header"><div className="nav-shell"><Brand /><nav id="primary-navigation" className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Primary navigation">{links.map((link, i) => <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setOpen(false)} tabIndex={open ? 0 : undefined}><span>0{i + 1}</span>{link}</a>)}</nav><a href="#contact" className="nav-cta">Let&apos;s talk <ArrowUpRight size={15} /></a><button className="menu-toggle" type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>{open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button></div></header>
 }
 
 function Hero() {
@@ -87,8 +87,13 @@ function Contact() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    const form = event.currentTarget
+    const data = new FormData(form)
+    const subject = String(data.get('subject') || 'Portfolio enquiry')
+    const body = [`Name: ${data.get('name')}`, `Email: ${data.get('email')}`, '', String(data.get('message') || '')].join('\\n')
+    window.location.href = `mailto:hello@muhammadhussain.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     setSubmitted(true)
-    event.currentTarget.reset()
+    form.reset()
   }
 
   return <section id="contact" className="contact"><div className="contact-glow" /><SectionLabel number="06">Have a project in mind?</SectionLabel><div className="contact-layout"><div><h2>Let&apos;s make<br /><em>something</em><br />meaningful.</h2><p>Tell me a little about what you&apos;re working on. I&apos;ll get back to you within a couple of days.</p><div className="socials"><a href="https://github.com" aria-label="GitHub"><GitBranch size={18} /></a><a href="https://linkedin.com" aria-label="LinkedIn"><CircleUserRound size={18} /></a><a href="mailto:hello@muhammadhussain.dev" aria-label="Email"><Mail size={18} /></a></div></div><form className="contact-form" onSubmit={handleSubmit} aria-describedby={submitted ? 'contact-success' : undefined}><label htmlFor="name">Name<input id="name" name="name" required placeholder="Your name" /></label><label htmlFor="email">Email<input id="email" name="email" required type="email" placeholder="you@company.com" /></label><label htmlFor="subject">Subject<input id="subject" name="subject" placeholder="What can I help with?" /></label><label htmlFor="message">Message<textarea id="message" name="message" required rows={4} placeholder="Tell me about your project..." /></label><button className="button button-primary" type="submit">Send message <MoveUpRight size={17} /></button>{submitted && <p id="contact-success" className="form-success" role="status">Thanks — the form is validated. Please email me directly to send your brief.</p>}</form></div></section>
