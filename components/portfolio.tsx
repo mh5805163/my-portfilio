@@ -24,11 +24,11 @@ import {
 } from 'lucide-react'
 
 const skills = [
-  { name: 'React.js', level: 'Advanced', icon: Braces, color: 'lime' },
-  { name: '.NET', level: 'Advanced', icon: ServerCog, color: 'blue' },
-  { name: 'HTML5', level: 'Advanced', icon: Code2, color: 'orange' },
-  { name: 'CSS3', level: 'Advanced', icon: Palette, color: 'pink' },
-  { name: 'WordPress', level: 'Proficient', icon: Globe2, color: 'cyan' },
+  { name: 'React.js', level: 'Advanced', focus: 'Interfaces', icon: Braces, color: 'lime', brandColor: '#61DAFB' },
+  { name: '.NET', level: 'Advanced', focus: 'Systems', icon: ServerCog, color: 'blue', brandColor: '#512BD4' },
+  { name: 'TypeScript', level: 'Advanced', focus: 'Precision', icon: Code2, color: 'orange', brandColor: '#3178C6' },
+  { name: 'CSS3', level: 'Advanced', focus: 'Expression', icon: Palette, color: 'pink', brandColor: '#1572B6' },
+  { name: 'WordPress', level: 'Proficient', focus: 'Content', icon: Globe2, color: 'cyan', brandColor: '#21759B' },
 ]
 
 const projects = [
@@ -54,11 +54,11 @@ function Brand() {
 function Navbar() {
   const [open, setOpen] = useState(false)
   const links = ['About', 'Skills', 'Projects', 'Experience', 'Services', 'Contact']
-  return <header className="site-header"><div className="nav-shell"><Brand /><nav className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Primary navigation">{links.map((link, i) => <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setOpen(false)}><span>0{i + 1}</span>{link}</a>)}</nav><a href="#contact" className="nav-cta">Let&apos;s talk <ArrowUpRight size={15} /></a><button className="menu-toggle" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button></div></header>
+  return <header className="site-header"><div className="nav-shell"><Brand /><nav id="primary-navigation" className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Primary navigation">{links.map((link, i) => <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setOpen(false)} tabIndex={open ? 0 : undefined}><span>0{i + 1}</span>{link}</a>)}</nav><a href="#contact" className="nav-cta">Let&apos;s talk <ArrowUpRight size={15} /></a><button className="menu-toggle" type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>{open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button></div></header>
 }
 
 function Hero() {
-  return <section id="home" className="hero"><div className="hero-grid" /><div className="hero-copy"><p className="eyebrow"><span className="status-dot" /> Available for select projects</p><h1>Ideas into<br /><em>impact.</em></h1><p className="hero-intro">I&apos;m Muhammad Hussain, a frontend and full stack developer crafting fast, expressive web experiences for people and brands that care about the details.</p><div className="hero-actions"><a className="button button-primary" href="#projects">View my work <ArrowDownRight size={17} /></a><a className="button button-ghost" href="#contact">Contact me <ArrowUpRight size={17} /></a></div></div><div className="hero-meta"><span>Scroll to explore</span><span className="hero-line" /><span>01 / 06</span></div><div className="hero-orbit orbit-one" /><div className="hero-orbit orbit-two" /><div className="hero-code"><span>{'{'} </span><span>build</span><br />beautiful<br />things<span> {'}'}</span></div></section>
+  return <section id="home" className="hero"><div className="hero-grid" /><div className="hero-content"><div className="hero-portrait"><img src="/assets/hussain.jfif" alt="Muhammad Hussain" /></div><div className="hero-copy"><p className="eyebrow"><span className="status-dot" /> Available for select projects</p><h1>Building<br />Digital<br /><em>Excellence</em></h1><p className="hero-intro">I&apos;m Muhammad Hussain, a frontend and full stack developer crafting fast, expressive web experiences for people and brands that care about the details.</p><div className="hero-actions"><a className="button button-primary" href="#projects">View my work <ArrowDownRight size={17} /></a><a className="button button-ghost" href="#contact">Contact me <ArrowUpRight size={17} /></a></div></div></div><div className="hero-meta"><span>Scroll to explore</span><span className="hero-line" /><span>01 / 06</span></div><div className="hero-orbit orbit-one" /><div className="hero-orbit orbit-two" /><div className="hero-code"><span>{'{'} </span><span>build</span><br />beautiful<br />things<span> {'}'}</span></div></section>
 }
 
 function About() {
@@ -66,7 +66,7 @@ function About() {
 }
 
 function Skills() {
-  return <section id="skills" className="section skills"><SectionLabel number="02">What I bring</SectionLabel><div className="section-heading"><h2>Tools of<br /><span>the trade.</span></h2><p>A focused toolkit for building digital experiences that are as reliable under the hood as they are enjoyable to use.</p></div><div className="skills-grid">{skills.map(({ name, level, icon: Icon, color }, i) => <div className={`skill-card ${color}`} key={name}><div className="skill-top"><span className="skill-index">0{i + 1}</span><Icon size={23} strokeWidth={1.5} /></div><h3>{name}</h3><div className="skill-bottom"><span>{level}</span><span className="skill-arrow">↗</span></div></div>)}</div></section>
+  return <section id="skills" className="section skills"><SectionLabel number="02">What I bring</SectionLabel><div className="section-heading"><h2>Tools of<br /><span>the trade.</span></h2><p>A focused toolkit for building digital experiences that are as reliable under the hood as they are enjoyable to use.</p></div><div className="skills-grid">{skills.map(({ name, level, focus, icon: Icon, color, brandColor }, i) => <article className={`skill-card ${color}`} key={name}><div className="skill-top"><span className="skill-index">0{i + 1}</span><Icon className="skill-icon" size={23} strokeWidth={1.5} style={{ color: brandColor }} aria-hidden="true" /></div><div className="skill-copy"><p>{focus}</p><h3>{name}</h3></div><div className="skill-bottom"><span>{level}</span><span className="skill-arrow" aria-hidden="true">↗</span></div></article>)}</div></section>
 }
 
 function Projects() {
@@ -87,8 +87,13 @@ function Contact() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    const form = event.currentTarget
+    const data = new FormData(form)
+    const subject = String(data.get('subject') || 'Portfolio enquiry')
+    const body = [`Name: ${data.get('name')}`, `Email: ${data.get('email')}`, '', String(data.get('message') || '')].join('\\n')
+    window.location.href = `mailto:hello@muhammadhussain.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     setSubmitted(true)
-    event.currentTarget.reset()
+    form.reset()
   }
 
   return <section id="contact" className="contact"><div className="contact-glow" /><SectionLabel number="06">Have a project in mind?</SectionLabel><div className="contact-layout"><div><h2>Let&apos;s make<br /><em>something</em><br />meaningful.</h2><p>Tell me a little about what you&apos;re working on. I&apos;ll get back to you within a couple of days.</p><div className="socials"><a href="https://github.com" aria-label="GitHub"><GitBranch size={18} /></a><a href="https://linkedin.com" aria-label="LinkedIn"><CircleUserRound size={18} /></a><a href="mailto:hello@muhammadhussain.dev" aria-label="Email"><Mail size={18} /></a></div></div><form className="contact-form" onSubmit={handleSubmit} aria-describedby={submitted ? 'contact-success' : undefined}><label htmlFor="name">Name<input id="name" name="name" required placeholder="Your name" /></label><label htmlFor="email">Email<input id="email" name="email" required type="email" placeholder="you@company.com" /></label><label htmlFor="subject">Subject<input id="subject" name="subject" placeholder="What can I help with?" /></label><label htmlFor="message">Message<textarea id="message" name="message" required rows={4} placeholder="Tell me about your project..." /></label><button className="button button-primary" type="submit">Send message <MoveUpRight size={17} /></button>{submitted && <p id="contact-success" className="form-success" role="status">Thanks — the form is validated. Please email me directly to send your brief.</p>}</form></div></section>
