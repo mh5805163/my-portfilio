@@ -37,7 +37,6 @@ function Projects() {
 function Skills() {
   return <>
     <section id="skills" className="section skills-section container"><span className="section-kicker">SKILLS</span><h2>I move comfortably between interface details, data structures, and server-side logic.</h2><div className="skills-grid">{skillGroups.map(group => <article className="skill-card" key={group.name}><div className="skill-card-heading"><h3>{group.name}</h3><p>{group.subtitle}</p></div><div className="skill-list">{group.skills.map(([name, level]) => <div className="skill-row" key={name}><div className="skill-label"><span>{name}</span><strong>{level}%</strong></div><div className="skill-track"><span style={{ width: `${level}%` }} /></div></div>)}</div></article>)}</div></section>
-    <section id="certifications" className="section certifications-section container"><span className="section-kicker">CERTIFICATIONS</span><h2>Certifications</h2></section>
   </>
 }
 
