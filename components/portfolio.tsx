@@ -3,12 +3,11 @@
 import { FormEvent, useEffect, useState } from 'react'
 import { ArrowUpRight, Check, ChevronDown, CircleUserRound, GitBranch, Mail, Menu, Moon, Sun, X } from 'lucide-react'
 
-const skills = [
-  { name: 'React.js', group: 'Frontend Development', icon: '⚛', color: '#61dafb' },
-  { name: 'HTML', group: 'Frontend Development', icon: '</>', color: '#e34f26' },
-  { name: 'CSS', group: 'Frontend Development', icon: '#', color: '#1572b6' },
-  { name: '.NET', group: 'Backend Development', icon: '∿', color: '#512bd4' },
-  { name: 'WordPress', group: 'CMS', icon: 'W', color: '#21759b' },
+const skillGroups = [
+  { name: 'Core stack', subtitle: 'Foundation of my daily work', skills: [['HTML', 95], ['CSS', 92], ['JavaScript ES6', 90], ['Bootstrap / Tailwind', 88]] },
+  { name: 'Frontend', subtitle: 'Interface work and component structure', skills: [['React', 88], ['Next.js', 78], ['Angular', 70], ['TypeScript', 82]] },
+  { name: 'Backend & APIs', subtitle: 'Server logic, data flow, and application structure', skills: [['Laravel', 92], ['PHP', 90], ['ASP.NET', 78], ['REST APIs', 88], ['OOPS', 70]] },
+  { name: 'Databases & tooling', subtitle: 'Storage, queries, and practical delivery', skills: [['MySQL / SQL', 90], ['MongoDB', 90], ['Node.js / Express', 82], ['Git / Deployment', 94]] },
 ]
 
 const projects = [
@@ -36,7 +35,10 @@ function Projects() {
 }
 
 function Skills() {
-  return <section id="skills" className="section container"><span className="section-kicker">SKILLS</span><h2>The tools I use to turn ideas into useful, maintainable products.</h2><div className="skills-grid">{['Frontend Development', 'Backend Development', 'CMS'].map(group => <article className="skill-card" key={group}><h3>{group}</h3><div className="skill-list">{skills.filter(skill => skill.group === group).map(skill => <div className="skill-row" key={skill.name}><span className="tech-icon" style={{ color: skill.color }}>{skill.icon}</span><span>{skill.name}</span><ArrowUpRight size={15} /></div>)}</div></article>)}</div></section>
+  return <>
+    <section id="skills" className="section skills-section container"><span className="section-kicker">SKILLS</span><h2>I move comfortably between interface details, data structures, and server-side logic.</h2><div className="skills-grid">{skillGroups.map(group => <article className="skill-card" key={group.name}><div className="skill-card-heading"><h3>{group.name}</h3><p>{group.subtitle}</p></div><div className="skill-list">{group.skills.map(([name, level]) => <div className="skill-row" key={name}><div className="skill-label"><span>{name}</span><strong>{level}%</strong></div><div className="skill-track"><span style={{ width: `${level}%` }} /></div></div>)}</div></article>)}</div></section>
+    <section id="certifications" className="section certifications-section container"><span className="section-kicker">CERTIFICATIONS</span><h2>Certifications</h2></section>
+  </>
 }
 
 function Experience() { return <section id="experience" className="section container compact"><span className="section-kicker">EXPERIENCE</span><h2>Learning, shipping, and getting a little better at the craft every day.</h2><div className="experience-list"><div><span>2023 — PRESENT</span><h3>Frontend / Full Stack Developer</h3><p>Building robust, polished digital products for ambitious businesses and teams.</p></div><div><span>2021 — 2023</span><h3>Web Developer</h3><p>Shipped responsive web experiences across e-commerce, SaaS, and content platforms.</p></div></div></section> }
