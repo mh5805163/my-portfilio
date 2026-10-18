@@ -23,12 +23,26 @@ import {
   X,
 } from 'lucide-react'
 
-const skills = [
-  { name: 'React.js', level: 'Advanced', focus: 'Interfaces', icon: Braces, color: 'lime', brandColor: '#61DAFB' },
-  { name: '.NET', level: 'Advanced', focus: 'Systems', icon: ServerCog, color: 'blue', brandColor: '#512BD4' },
-  { name: 'TypeScript', level: 'Advanced', focus: 'Precision', icon: Code2, color: 'orange', brandColor: '#3178C6' },
-  { name: 'CSS3', level: 'Advanced', focus: 'Expression', icon: Palette, color: 'pink', brandColor: '#1572B6' },
-  { name: 'WordPress', level: 'Proficient', focus: 'Content', icon: Globe2, color: 'cyan', brandColor: '#21759B' },
+const skillGroups = [
+  {
+    title: 'Frontend Development',
+    description: 'Interface work and component structure',
+    skills: [
+      { name: 'React.js', icon: Braces, brandColor: '#61DAFB' },
+      { name: 'HTML', icon: Code2, brandColor: '#E34F26' },
+      { name: 'CSS', icon: Palette, brandColor: '#1572B6' },
+    ],
+  },
+  {
+    title: 'Backend Development',
+    description: 'Reliable systems and server-side logic',
+    skills: [{ name: '.NET', icon: ServerCog, brandColor: '#512BD4' }],
+  },
+  {
+    title: 'CMS',
+    description: 'Flexible content experiences for teams',
+    skills: [{ name: 'WordPress', icon: Globe2, brandColor: '#21759B' }],
+  },
 ]
 
 const projects = [
@@ -66,7 +80,7 @@ function About() {
 }
 
 function Skills() {
-  return <section id="skills" className="section skills"><SectionLabel number="02">What I bring</SectionLabel><div className="section-heading"><h2>Tools of<br /><span>the trade.</span></h2><p>A focused toolkit for building digital experiences that are as reliable under the hood as they are enjoyable to use.</p></div><div className="skills-grid">{skills.map(({ name, level, focus, icon: Icon, color, brandColor }, i) => <article className={`skill-card ${color}`} key={name}><div className="skill-top"><span className="skill-index">0{i + 1}</span><Icon className="skill-icon" size={23} strokeWidth={1.5} style={{ color: brandColor }} aria-hidden="true" /></div><div className="skill-copy"><p>{focus}</p><h3>{name}</h3></div><div className="skill-bottom"><span>{level}</span><span className="skill-arrow" aria-hidden="true">↗</span></div></article>)}</div></section>
+  return <section id="skills" className="section skills"><SectionLabel number="02">What I bring</SectionLabel><div className="section-heading skills-heading"><div><h2>Tools of<br /><span>the trade.</span></h2><p className="skills-intro">I move comfortably between interface details, data structures, and server-side logic.</p></div><span className="skills-note">A focused toolkit<br />for thoughtful products.</span></div><div className="skill-groups">{skillGroups.map(({ title, description, skills }, i) => <article className="skill-group" key={title}><div className="skill-group-heading"><span className="skill-index">0{i + 1}</span><div><h3>{title}</h3><p>{description}</p></div></div><div className="skill-items">{skills.map(({ name, icon: Icon, brandColor }) => <div className="skill-item" key={name}><span className="skill-brand" style={{ color: brandColor }}><Icon size={22} strokeWidth={1.7} aria-hidden="true" /></span><span>{name}</span><span className="skill-item-arrow" aria-hidden="true">↗</span></div>)}</div></article>)}</div></section>
 }
 
 function Projects() {
