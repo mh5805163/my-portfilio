@@ -1,7 +1,5 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
-
 :root { --bg:#f6f4eb; --surface:#fffef9; --text:#22221f; --muted:#6e6e63; --line:#dddcd2; --accent:#74783f; --soft:#eeecdf; --radius:28px; }
 :root[data-theme='dark'] { --bg:#191a17; --surface:#24251f; --text:#f7f5eb; --muted:#b3b5a7; --line:#404237; --accent:#b7bd73; --soft:#2d3028; }
 * { box-sizing:border-box; border-color:var(--line); }
