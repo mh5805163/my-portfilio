@@ -1,6 +1,6 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -67,8 +67,26 @@ function Brand() {
 
 function Navbar() {
   const [open, setOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
   const links = ['About', 'Skills', 'Projects', 'Experience', 'Services', 'Contact']
-  return <header className="site-header"><div className="nav-shell"><Brand /><nav id="primary-navigation" className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Primary navigation">{links.map((link, i) => <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setOpen(false)} tabIndex={open ? 0 : undefined}><span>0{i + 1}</span>{link}</a>)}</nav><a href="#contact" className="nav-cta">Let&apos;s talk <ArrowUpRight size={15} /></a><button className="menu-toggle" type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>{open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button></div></header>
+
+  useEffect(() => {
+    const sections = ['home', ...links.map((link) => link.toLowerCase())]
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+        if (visible) setActiveSection(visible.target.id)
+      },
+      { rootMargin: '-18% 0px -62% 0px', threshold: [0.1, 0.35, 0.7] },
+    )
+    sections.forEach((id) => {
+      const section = document.getElementById(id)
+      if (section) observer.observe(section)
+    })
+    return () => observer.disconnect()
+  }, [])
+
+  return <header className="site-header"><div className="nav-shell"><Brand /><nav id="primary-navigation" className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Primary navigation">{links.map((link, i) => { const id = link.toLowerCase(); return <a key={link} href={`#${id}`} className={activeSection === id ? 'is-active' : undefined} aria-current={activeSection === id ? 'page' : undefined} onClick={() => setOpen(false)} tabIndex={open ? 0 : undefined}><span>0{i + 1}</span>{link}</a> })}</nav><a href="#contact" className="nav-cta">Let&apos;s talk <ArrowUpRight size={15} /></a><button className="menu-toggle" type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>{open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button></div></header>
 }
 
 function Hero() {

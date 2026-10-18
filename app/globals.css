@@ -41,7 +41,7 @@ input::placeholder, textarea::placeholder { color: #778077; opacity: 1; }
 .brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--primary); color: var(--primary); border-radius: 50%; font-size: 9px; letter-spacing: -.06em; }
 .nav-links { display: flex; gap: 29px; margin-left: auto; margin-right: 42px; }
 .nav-links a { color: var(--muted); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; transition: color .2s; }
-.nav-links a:hover { color: var(--primary); }.nav-links span { color: #59605a; font-size: 8px; margin-right: 5px; }
+.nav-links a:hover, .nav-links a.is-active { color: var(--primary); }.nav-links a.is-active span { color: var(--primary); }.nav-links span { color: #59605a; font-size: 8px; margin-right: 5px; }
 .nav-cta { display: flex; gap: 7px; align-items: center; color: var(--primary); font-family: var(--font-mono); text-transform: uppercase; font-size: 10px; letter-spacing: .08em; }.menu-toggle { display: none; background: transparent; border: 0; color: var(--foreground); }
 
 .hero { min-height: 760px; position: relative; display: flex; align-items: center; padding: 150px max(34px, calc((100% - 1172px) / 2)); isolation: isolate; background: radial-gradient(ellipse at 78% 40%, #1b2520 0, #101211 42%, #101211 75%); }
