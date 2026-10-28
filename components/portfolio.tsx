@@ -4,10 +4,10 @@ import { FormEvent, useEffect, useState } from 'react'
 import { ArrowUpRight, Check, ChevronDown, CircleUserRound, GitBranch, Mail, Menu, Moon, Sun, X } from 'lucide-react'
 
 const skillGroups = [
-  { name: 'Core stack', subtitle: 'Foundation of my daily work', skills: [['HTML', 95], ['CSS', 92], ['JavaScript ES6', 90], ['Bootstrap / Tailwind', 88]] },
-  { name: 'Frontend', subtitle: 'Interface work and component structure', skills: [['React', 88], ['Next.js', 78], ['Angular', 70], ['TypeScript', 82]] },
-  { name: 'Backend & APIs', subtitle: 'Server logic, data flow, and application structure', skills: [['Laravel', 92], ['PHP', 90], ['ASP.NET', 78], ['REST APIs', 88], ['OOPS', 70]] },
-  { name: 'Databases & tooling', subtitle: 'Storage, queries, and practical delivery', skills: [['MySQL / SQL', 90], ['MongoDB', 90], ['Node.js / Express', 82], ['Git / Deployment', 94]] },
+  { name: 'Core stack', subtitle: 'Foundation of my daily work', skills: ['HTML', 'CSS', 'JavaScript ES6', 'Bootstrap / Tailwind'] },
+  { name: 'Frontend', subtitle: 'Interface work and component structure', skills: ['React', 'Next.js', 'Angular', 'TypeScript'] },
+  { name: 'Backend & APIs', subtitle: 'Server logic, data flow, and application structure', skills: ['Laravel', 'PHP', 'ASP.NET', 'REST APIs', 'OOPS'] },
+  { name: 'Databases & tooling', subtitle: 'Storage, queries, and practical delivery', skills: ['MySQL / SQL', 'MongoDB', 'Node.js / Express', 'Git / Deployment'] },
 ]
 
 const projects = [
@@ -23,7 +23,7 @@ function Navbar({ dark, setDark }: { dark: boolean; setDark: (value: boolean) =>
 }
 
 function Hero() {
-  return <section id="home" className="hero container"><div className="hero-copy"><span className="pill">AVAILABLE FOR WORK</span><h1>I build web products that feel clear, useful, and built with intent.</h1><p>I&apos;m Muhammad Hussain, a frontend and full-stack developer crafting fast, expressive web experiences for people and brands that care about the details.</p><div className="hero-actions"><a className="button button-primary" href="#projects">View projects <ArrowUpRight size={16} /></a><a className="button" href="#contact">Contact</a></div><div className="hero-facts"><span>Frontend and backend experience</span><span>Comfortable in modern and legacy stacks</span></div></div><div className="hero-visual"><img src="/assets/hussain.jfif" alt="Muhammad Hussain" /><div className="social-buttons"><a href="https://github.com" aria-label="GitHub"><GitBranch size={18} /></a><a href="https://linkedin.com" aria-label="LinkedIn"><CircleUserRound size={18} /></a></div><span className="role-label">Software Engineer / Full-Stack Developer</span></div></section>
+  return <section id="home" className="hero container"><div className="hero-copy"><span className="pill">AVAILABLE FOR WORK</span><h1>I build web products that feel clear, useful, and built with intent.</h1><p>I&apos;m Muhammad Hussain, a frontend and full-stack developer crafting fast, expressive web experiences for people and brands that care about the details.</p><div className="hero-actions"><a className="button button-primary" href="#projects">View projects <ArrowUpRight size={16} /></a><a className="button" href="#contact">Contact</a></div><div className="hero-facts"><span>Frontend and backend experience</span><span>Comfortable in modern and legacy stacks</span></div></div><div className="hero-visual"><img src="/assets/hussain.jfif" alt="Muhammad Hussain" /><div className="social-buttons"><a href="https://github.com/mh5805163" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GitBranch size={18} /></a><a href="https://linkedin.com" aria-label="LinkedIn"><CircleUserRound size={18} /></a></div><span className="role-label">Software Engineer / Full-Stack Developer</span></div></section>
 }
 
 function About() {
@@ -36,7 +36,7 @@ function Projects() {
 
 function Skills() {
   return <>
-    <section id="skills" className="section skills-section container"><span className="section-kicker">SKILLS</span><h2>I move comfortably between interface details, data structures, and server-side logic.</h2><div className="skills-grid">{skillGroups.map(group => <article className="skill-card" key={group.name}><div className="skill-card-heading"><h3>{group.name}</h3><p>{group.subtitle}</p></div><div className="skill-list">{group.skills.map(([name, level]) => <div className="skill-row" key={name}><div className="skill-label"><span>{name}</span><strong>{level}%</strong></div><div className="skill-track"><span style={{ width: `${level}%` }} /></div></div>)}</div></article>)}</div></section>
+    <section id="skills" className="section skills-section container"><span className="section-kicker">SKILLS</span><h2>I move comfortably between interface details, data structures, and server-side logic.</h2><div className="skills-grid">{skillGroups.map(group => <article className="skill-card" key={group.name}><div className="skill-card-heading"><h3>{group.name}</h3><p>{group.subtitle}</p></div><div className="skill-list">{group.skills.map(name => <div className="skill-row" key={name}><div className="skill-label"><span>{name}</span></div></div>)}</div></article>)}</div></section>
   </>
 }
 
