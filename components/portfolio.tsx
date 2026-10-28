@@ -4,10 +4,10 @@ import { FormEvent, useEffect, useState } from 'react'
 import { ArrowUpRight, Check, ChevronDown, CircleUserRound, GitBranch, Mail, Menu, Moon, Sun, X } from 'lucide-react'
 
 const skillGroups = [
-  { name: 'Core stack', subtitle: 'Foundation of my daily work', skills: [['HTML', 95], ['CSS', 92], ['JavaScript ES6', 90], ['Bootstrap / Tailwind', 88]] },
-  { name: 'Frontend', subtitle: 'Interface work and component structure', skills: [['React', 88], ['Next.js', 78], ['Angular', 70], ['TypeScript', 82]] },
-  { name: 'Backend & APIs', subtitle: 'Server logic, data flow, and application structure', skills: [['Laravel', 92], ['PHP', 90], ['ASP.NET', 78], ['REST APIs', 88], ['OOPS', 70]] },
-  { name: 'Databases & tooling', subtitle: 'Storage, queries, and practical delivery', skills: [['MySQL / SQL', 90], ['MongoDB', 90], ['Node.js / Express', 82], ['Git / Deployment', 94]] },
+  { name: 'Core stack', subtitle: 'Foundation of my daily work', skills: ['HTML', 'CSS', 'JavaScript ES6', 'Bootstrap / Tailwind'] },
+  { name: 'Frontend', subtitle: 'Interface work and component structure', skills: ['React', 'Next.js', 'Angular', 'TypeScript'] },
+  { name: 'Backend & APIs', subtitle: 'Server logic, data flow, and application structure', skills: ['Laravel', 'PHP', 'ASP.NET', 'REST APIs', 'OOPS'] },
+  { name: 'Databases & tooling', subtitle: 'Storage, queries, and practical delivery', skills: ['MySQL / SQL', 'MongoDB', 'Node.js / Express', 'Git / Deployment'] },
 ]
 
 const projects = [
@@ -36,7 +36,7 @@ function Projects() {
 
 function Skills() {
   return <>
-    <section id="skills" className="section skills-section container"><span className="section-kicker">SKILLS</span><h2>I move comfortably between interface details, data structures, and server-side logic.</h2><div className="skills-grid">{skillGroups.map(group => <article className="skill-card" key={group.name}><div className="skill-card-heading"><h3>{group.name}</h3><p>{group.subtitle}</p></div><div className="skill-list">{group.skills.map(([name, level]) => <div className="skill-row" key={name}><div className="skill-label"><span>{name}</span><strong>{level}%</strong></div><div className="skill-track"><span style={{ width: `${level}%` }} /></div></div>)}</div></article>)}</div></section>
+    <section id="skills" className="section skills-section container"><span className="section-kicker">SKILLS</span><h2>I move comfortably between interface details, data structures, and server-side logic.</h2><div className="skills-grid">{skillGroups.map(group => <article className="skill-card" key={group.name}><div className="skill-card-heading"><h3>{group.name}</h3><p>{group.subtitle}</p></div><div className="skill-list">{group.skills.map(name => <div className="skill-row" key={name}><div className="skill-label"><span>{name}</span></div></div>)}</div></article>)}</div></section>
   </>
 }
 
